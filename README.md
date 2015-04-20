@@ -2,6 +2,11 @@
 Chef cookbooks, knife plugins and other utility scripts for Raspberry Pi
 
 ### Introduction
+PiChef intends to ease maintaining your Raspberry Pi configuration. Currently
+it provides following thing:
+- Chef debian installer for Raspbian
+- goiardi recipe to run a chef server inside raspberry pi
+- blender based scripts automate installtion, build and other orchestrated workflows.
 
 ### Setup
 This guide assumes you are running Raspbian and your Pi is accessible via
@@ -17,11 +22,7 @@ On your workstation:
   bundle install --path .bundle
   ```
 
-## Usage
-
-- Build a chef installer (debian package) for Raspberry Pi
-
-```sh
-  bundle exec knife blend blends/build.rb -h IPADDRESS -u pi --prompt
-```
--
+- Install chef on a RaspberryPi
+  ```sh
+  bundle exec knife blend blends/install.rb -h <IPADDRESS> --prompt
+  ```
