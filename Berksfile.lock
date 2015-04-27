@@ -1,0 +1,6 @@
+DEPENDENCIES
+  raspi
+    path: site-cookbooks/raspi
+
+GRAPH
+  raspi (0.0.1)
