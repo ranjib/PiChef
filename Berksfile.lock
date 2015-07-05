@@ -1,4 +1,5 @@
 DEPENDENCIES
+  packagecloud
   raspi
     path: site-cookbooks/raspi
   sensu
@@ -15,6 +16,7 @@ GRAPH
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
     yum-erlang_solutions (>= 0.0.0)
+  packagecloud (0.0.19)
   rabbitmq (4.0.1)
     erlang (~> 1.5.0)
     yum-epel (>= 0.0.0)
