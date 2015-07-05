@@ -2,6 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.8)
+    arr-pm (0.0.10)
+      cabin (> 0)
+    backports (3.6.4)
     berkshelf (3.2.3)
       addressable (~> 2.3.4)
       berkshelf-api-client (~> 1.2)
@@ -33,6 +36,7 @@ GEM
     buff-shell_out (0.2.0)
       buff-ruby_engine (~> 0.1.0)
     builder (3.2.2)
+    cabin (0.7.1)
     cd (1.0.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
@@ -67,6 +71,9 @@ GEM
       mixlib-log (~> 1.3)
       rack
       uuidtools (~> 2.1)
+    childprocess (0.5.6)
+      ffi (~> 1.0, >= 1.0.11)
+    clamp (0.6.5)
     cleanroom (1.0.0)
     clipboard (1.0.6)
     code (0.9.0)
@@ -93,6 +100,14 @@ GEM
     ffi-yajl (2.0.0)
       ffi (~> 1.5)
       libyajl2 (~> 1.2)
+    fpm (1.3.3)
+      arr-pm (~> 0.0.9)
+      backports (>= 2.6.2)
+      cabin (>= 0.6.0)
+      childprocess
+      clamp (~> 0.6)
+      ffi
+      json (>= 1.7.7)
     hashie (2.1.2)
     highline (1.7.2)
     hirb (0.7.3)
@@ -261,5 +276,6 @@ DEPENDENCIES
   berkshelf
   blender-chef
   chef
+  fpm
   irbtools
   pry
