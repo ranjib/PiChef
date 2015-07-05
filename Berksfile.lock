@@ -1,6 +1,39 @@
 DEPENDENCIES
   raspi
     path: site-cookbooks/raspi
+  sensu
+    git: git://github.com/sensu/sensu-chef.git
+    revision: e78a6194658b00caf2d659963a73f6ce360a721a
 
 GRAPH
+  apt (2.7.0)
+  build-essential (2.2.3)
+  chef_handler (1.2.0)
+  erlang (1.5.8)
+    apt (>= 1.7.0)
+    build-essential (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+    yum-erlang_solutions (>= 0.0.0)
+  rabbitmq (4.0.1)
+    erlang (~> 1.5.0)
+    yum-epel (>= 0.0.0)
+    yum-erlang_solutions (>= 0.0.0)
   raspi (0.0.1)
+  redisio (2.3.0)
+    build-essential (>= 0.0.0)
+    ulimit (>= 0.1.2)
+  sensu (2.10.0)
+    apt (>= 0.0.0)
+    rabbitmq (>= 2.0.0)
+    redisio (>= 1.7.0)
+    windows (>= 1.8.8)
+    yum (>= 0.0.0)
+  ulimit (0.3.3)
+  windows (1.37.0)
+    chef_handler (>= 0.0.0)
+  yum (3.6.1)
+  yum-epel (0.6.2)
+    yum (~> 3.2)
+  yum-erlang_solutions (0.2.0)
+    yum (~> 3.0)
