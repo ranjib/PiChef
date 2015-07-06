@@ -1,7 +1,3 @@
-packagecloud_repo 'ranjib/goatos' do
-  type 'deb'
-end
-
 package 'nagios-nrpe-server'
 
 file '/etc/hostname' do
@@ -36,17 +32,21 @@ remote_file '/etc/localtime' do
   group 'root'
 end
 
-cron '/opt/chef/bin/chef-client' do
-  minute 0
-  hour '*'
-end
-
 cookbook_file '/boot/config.txt' do
-  mode 0751
+  mode 0755
   owner 'root'
   group 'root'
 end
 
 package 'ruby1.9.1' do
   action :remove
+end
+
+package 'utilities' do
+  package_name %w(
+    screen
+    vim
+    htop
+    strace
+  )
 end
