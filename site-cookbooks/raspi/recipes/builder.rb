@@ -29,13 +29,22 @@ end
     recursive true
   end
 end
+ruby_debian_path = ::File.join(Chef::Config.file_cache_path, 'pi-ruby_2.2.2_armhf.deb')
+remote_file ruby_debian_path do
+  source 'https://github.com/ranjib/PiChef/releases/download/0.0.1/pi-ruby_2.2.2_armhf.deb'
+  action :create_if_missing
+end
 
-#%w(bundler fpm).each do |g|
-#  gem_package g do
-#    gem_binary '/opt/rubies/2.2.2/bin/gem'
-#    options %w(--no-ri --no-rdoc)
-#  end
-#end
+dpkg_package 'pi-ruby' do
+  source ruby_debian_path
+end
+
+%w(bundler fpm).each do |g|
+  gem_package g do
+    gem_binary '/opt/rubies/2.2.2/bin/gem'
+    options "--no-ri --no-rdoc"
+  end
+end
 
 cookbook_file '/opt/pichef/builder/chef/build_chef.sh' do
   mode 0754
