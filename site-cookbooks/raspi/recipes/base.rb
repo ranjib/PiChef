@@ -20,7 +20,7 @@ file '/etc/hosts' do
     [
       '127.0.0.1  localhost',
       '::1  localhost',
-      "127.0.0.1  #{node.name}",
+      "127.0.0.1  #{node.name}"
     ].join("\n")
   )
 end

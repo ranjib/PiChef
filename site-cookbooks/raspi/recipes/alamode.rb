@@ -1,12 +1,12 @@
 package 'arduino' do
   package %w(
-   arduino
-   avr-libc
-   libftdi1
-   avrdude
-   openjdk-6-jre
-   librxtx-java
-   )
+    arduino
+    avr-libc
+    libftdi1
+    avrdude
+    openjdk-6-jre
+    librxtx-java
+  )
 end
 package 'i2c-tools'
 
@@ -24,9 +24,9 @@ execute 'tar -xvzf alamode-setup.tar.gz' do
 end
 
 bash 'alamode_setup' do
- code 'sudo ./setup'
- cwd '/opt/alamode/alamode-setup'
- action :nothing
+  code 'sudo ./setup'
+  cwd '/opt/alamode/alamode-setup'
+  action :nothing
 end
 
 cookbook_file '/etc/udev/rules.d/80-alamode-rules' do

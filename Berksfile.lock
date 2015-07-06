@@ -22,6 +22,7 @@ GRAPH
     yum-epel (>= 0.0.0)
     yum-erlang_solutions (>= 0.0.0)
   raspi (0.0.1)
+    packagecloud (>= 0.0.0)
   redisio (2.3.0)
     build-essential (>= 0.0.0)
     ulimit (>= 0.1.2)

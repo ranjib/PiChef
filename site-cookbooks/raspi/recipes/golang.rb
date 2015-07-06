@@ -1,5 +1,5 @@
 tarball = 'go1.4.2.linux-arm~multiarch-armv7-1.tar.gz'
-tarball_path ::File.join(Chef::Config[:file_cache_path], tarball) do
+tarball_path = ::File.join(Chef::Config[:file_cache_path], tarball)
 
 remote_file tarball_path do
   source "http://dave.cheney.net/paste/#{tarball}"
