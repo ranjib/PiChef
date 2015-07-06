@@ -1,0 +1,2 @@
+KERNEL==”ttyAMA0″,SYMLINK+=”ttyS0″ GROUP=”dialout”
+KERNEL==”ttyACM0″,SYMLINK+=”ttyS1″ GROUP=”dialout”
