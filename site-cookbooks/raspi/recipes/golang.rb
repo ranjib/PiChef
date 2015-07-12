@@ -4,7 +4,7 @@ tarball_path = ::File.join(Chef::Config[:file_cache_path], tarball)
 remote_file tarball_path do
   source "http://dave.cheney.net/paste/#{tarball}"
   action :create_if_missing
-  notify :run, 'exeucute[decompress_tarball]'
+  notifies :run, 'execute[decompress_tarball]'
 end
 
 execute 'decompress_tarball' do
