@@ -74,6 +74,10 @@ GEM
       mixlib-log (~> 1.3)
       rack
       uuidtools (~> 2.1)
+    chefspec (4.2.0)
+      chef (>= 11.14)
+      fauxhai (~> 2.0)
+      rspec (~> 3.0)
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
     clamp (0.6.5)
@@ -99,6 +103,9 @@ GEM
       unicode-display_width (>= 0.2.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    fauxhai (2.3.0)
+      net-ssh
+      ohai
     ffi (1.9.8)
     ffi-yajl (2.0.0)
       ffi (~> 1.5)
@@ -308,8 +315,12 @@ DEPENDENCIES
   berkshelf
   blender-chef
   chef
+  chefspec
   foodcritic
   fpm
   irbtools
   pry
   rubocop
+
+BUNDLED WITH
+   1.10.5
