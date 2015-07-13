@@ -26,6 +26,8 @@ package 'deps' do
   )
 end
 
+# omnibus master fails to build on raspberry due to ruby 2.2 download failure
+# https://github.com/chef/omnibus-chef/issues/434
 git '/home/omnibus/omnibus-chef' do
   repository 'https://github.com/chef/omnibus-chef.git'
   action :checkout

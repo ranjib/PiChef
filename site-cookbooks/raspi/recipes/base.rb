@@ -1,6 +1,11 @@
-include_recipe 'sudo'
-include_recipe 'openssh'
-include_recipe 'apparmor'
+include_recipe 'sudo::default'
+include_recipe 'openssh::default'
+
+# apparmor recipe bombs on 15.04
+# https://github.com/opscode-cookbooks/apparmor/issues/4
+unless node.platform_version == '15.04'
+  include_recipe 'apparmor'
+end
 
 sudo 'ubuntu' do
   user 'ubuntu'

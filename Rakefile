@@ -9,7 +9,7 @@ require_relative 'lib/pi_chef/debian'
 require 'tempfile'
 
 RSpec::Core::RakeTask.new(:spec) do |t|
-  t.pattern = %w()
+  t.pattern = %w(site-cookbooks/**/*_spec.rb)
 end
 
 package_name = 'pi-chef'
