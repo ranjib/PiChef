@@ -1,3 +1,12 @@
+include_recipe 'sudo'
+include_recipe 'openssh'
+include_recipe 'apparmor'
+
+sudo 'ubuntu' do
+  user 'ubuntu'
+  nopasswd true
+end
+
 file '/etc/hostname' do
   content "#{node.name}\n"
   mode 0644

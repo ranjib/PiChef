@@ -3,30 +3,23 @@
 
 # assume pi-ruby is present (ruby 2.2.2 installed /opt/rubies/2.2.2)
 set -e
+set -o pipefail
 
 
-# build ruby 2.2.2 with /opt/chef as target installation directory
-cd /opt/pichef/builder/chef
-wget -c http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.2.tar.gz
-tar -zxvf ruby-2.2.2.tar.gz
-cd ruby-2.2.2
-bash ./configure --enable-shared --disable-install-doc --disable-install-rdoc --disable-install-capi --prefix=/opt/chef
-make
-make install
-/opt/chef/bin/gem install bundler --no-ri --no-rdoc
-cd ..
-rm -rf ruby-2.2.2*
-
-export PATH=/opt/chef/bin:$PATH
-
-#build chef from master
-git clone https://github.com/chef/chef.git
-cd chef
-CHEF_VERSION=`cat VERSION`
-bundle install --path .bundle
-bundle exec rake package_components
-gem install chef-config/pkg/chef-config-${CHEF_VERSION}.gem
-bundle exec rake package
-gem install pkg/chef-${CHEF_VERSION}.gem
-/opt/rubies/2.2.2/bin/fpm -s dir -t deb -n pi-chef -v ${CHEF_VERSION} /opt/chef
-rm -rf /opt/chef
+VERSION=`lsb_release  -a 2> /dev/null | grep Codename: | awk '{print $2}'`
+source /home/omnibus/load-omnibus-toolchain.sh
+cd /home/omnibus/omnibus-chef
+rm -rf pkg
+bundle install --path .bundle --without development
+bundle exec omnibus build chef
+mv /home/omnibus/omnibus-chef/pkg/*.deb /home/omnibus/chef-transform/chefx.deb
+cd /home/omnibus/chef-transform
+dpkg-deb -x chefx.deb chef
+dpkg-deb -e chefx.deb chef/DEBIAN
+sed -ir "s/Architecture: armv7l/Architecture: armhf/"
+dpkg-deb -b chef chef.deb
+mv chef.deb /home/omnibus/chef-$(VERSION).deb
+cd /home/omnibus
+rm -rf /home/omnibus/omnibus-chef
+#package_cloud yank ranjib/goatos/ubuntu/$(VERSION) chef.deb
+#package_cloud push ranjib/goatos/ubuntu/$(VERSION) chef.deb

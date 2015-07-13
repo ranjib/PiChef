@@ -1,3 +1,5 @@
+include_recipe 'omnibus'
+
 package 'deps' do
   package_name %w(
     autoconf
@@ -24,32 +26,16 @@ package 'deps' do
   )
 end
 
-%w(ruby chef).each do |d|
-  directory "/opt/pichef/builder/#{d}" do
-    recursive true
-  end
-end
-ruby_debian_path = ::File.join(Chef::Config.file_cache_path, 'pi-ruby_2.2.2_armhf.deb')
-remote_file ruby_debian_path do
-  source 'https://github.com/ranjib/PiChef/releases/download/0.0.1/pi-ruby_2.2.2_armhf.deb'
-  action :create_if_missing
+git '/home/omnibus/omnibus-chef' do
+  repository 'https://github.com/chef/omnibus-chef.git'
+  action :checkout
+  user 'omnibus'
+  group 'omnibus'
+  revision '8d0d923a35dffe8f55cb1ca4a9e0fec94b4e4bde'
 end
 
-dpkg_package 'pi-ruby' do
-  source ruby_debian_path
-end
-
-%w(bundler fpm).each do |g|
-  gem_package g do
-    gem_binary '/opt/rubies/2.2.2/bin/gem'
-    options "--no-ri --no-rdoc"
-  end
-end
-
-cookbook_file '/opt/pichef/builder/chef/build_chef.sh' do
+cookbook_file '/home/omnibus/build_chef.sh' do
   mode 0754
-end
-
-cookbook_file '/opt/pichef/builder/ruby/build_ruby.sh' do
-  mode 0754
+  owner 'omnibus'
+  group 'omnibus'
 end
