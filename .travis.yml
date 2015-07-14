@@ -1,0 +1,9 @@
+branches:
+  only:
+    - master
+language: ruby
+rvm:
+  - 2.2.2
+before_install:
+  - bundle install --path .bundle
+script: bundle exec rake spec

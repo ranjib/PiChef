@@ -1,4 +1,7 @@
-## PiChef
+PiChef
+=========
+[![Built on Travis](https://secure.travis-ci.org/ranjib/pichef.png?branch=master)](http://travis-ci.org/ranjib/pichef)
+
 Chef on Raspberry Pi.
 
 ### Introduction
