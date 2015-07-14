@@ -39,10 +39,13 @@ remote_file '/etc/localtime' do
   group 'root'
 end
 
-cookbook_file '/boot/config.txt' do
+file '/boot/config.txt' do
   mode 0755
   owner 'root'
   group 'root'
+  content(
+    (node.raspi.boot_options || Raspi.default_boot_options).join("\n")
+  )
 end
 
 package 'utilities' do
