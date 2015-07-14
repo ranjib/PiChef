@@ -39,12 +39,12 @@ remote_file '/etc/localtime' do
   group 'root'
 end
 
-file '/boot/config.txt' do
+file '/boot/firmware/config.txt' do
   mode 0755
   owner 'root'
   group 'root'
   content(
-    (node.raspi.boot_options || Raspi.default_boot_options).join("\n")
+    (node.raspi.boot_options || Raspi.default_boot_options) * "\n" + "\n"
   )
 end
 

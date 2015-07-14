@@ -58,11 +58,11 @@ describe 'recipe[raspi::base]' do
   end
 
   it 'configures pi for hdmi hotplug' do
-    expect(chef_run).to create_file('/boot/config.txt').with(
+    expect(chef_run).to create_file('/boot/firmware/config.txt').with(
       mode: 0755,
       owner: 'root',
       group: 'root',
-      content: boot_options.join("\n")
+      content: boot_options.join("\n") + "\n"
     )
   end
 
