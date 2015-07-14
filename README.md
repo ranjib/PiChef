@@ -5,10 +5,10 @@ Chef on Raspberry Pi.
 
 PiChef brings the joy of configuration management system [Chef](https://www.chef.io/chef/)
 on [Raspberry Pi](https://www.raspberrypi.org/).
-PiChef is conceived with following goals
-  - Ease building and maintaining raspberry pi related projects (like weather stations, CNC machines, home automation).
-  by providing chef installers for Raspberry Pi, generic server administration cookbooks (sudo, ssh).
-  - Setting up a continuous integration chain with upstream Chef projects and essential chef cookbooks using [GoatOS](https://github.com/goatos)
+PiChef is built with following goals
+  - Ease building and maintaining raspberry pi related projects (like weather stations, CNC machines, home automation)
+  by providing chef installers for Raspberry Pi, generic server administration cookbooks (sudo, ssh) etc.
+  - Setting up a continuous integration chain with upstream Chef projects and [essential chef cookbooks](https://github.com/ranjib/pichef#cookbooks) using [GoatOS](https://github.com/goatos)
   - As a learning platform for system automation (run a small data center backed by chef).
 
 Currently PiChef provides following:
@@ -45,6 +45,15 @@ from where Pi will be managed.
     - LED Segments
     - Steppers
 
+
+### Cookbooks
+
+Currently following cookbooks are tested under GoatOS with PiChef
+
+- openssh
+- sudo
+- apparmor
+- omnibus
 
 ## Contributing/Development
 
