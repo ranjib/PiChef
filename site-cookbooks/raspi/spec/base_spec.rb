@@ -6,7 +6,9 @@ describe 'recipe[raspi::base]' do
   end
 
   cached(:chef_run) do
-    ChefSpec::SoloRunner.new.converge('recipe[raspi::base]')
+    ChefSpec::SoloRunner.new do |node|
+      node.set['raspi']['timezone'] = 'foo/bar'
+    end.converge('recipe[raspi::base]')
   end
 
   context '#include_recipe' do
@@ -43,7 +45,7 @@ describe 'recipe[raspi::base]' do
 
   it 'sets localtime to bay area time' do
     expect(chef_run).to create_remote_file('/etc/localtime').with(
-      source: 'file:///usr/share/zoneinfo/America/Los_Angeles',
+      source: 'file:///usr/share/zoneinfo/foo/bar',
       mode: 0644,
       owner: 'root',
       group: 'root'

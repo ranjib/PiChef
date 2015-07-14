@@ -33,7 +33,7 @@ file '/etc/hosts' do
 end
 
 remote_file '/etc/localtime' do
-  source 'file:///usr/share/zoneinfo/America/Los_Angeles'
+  source "file:///usr/share/zoneinfo/#{node.raspi.timezone}"
   mode 0644
   owner 'root'
   group 'root'
