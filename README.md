@@ -6,13 +6,13 @@ Chef on Raspberry Pi.
 PiChef brings the joy of configuration management system [Chef](https://www.chef.io/chef/)
 on [Raspberry Pi](https://www.raspberrypi.org/).
 PiChef is built with following goals
-  - Ease building and maintaining raspberry pi related projects (like weather stations, CNC machines, home automation)
+  - Ease building and maintaining raspberry pi related projects (like weather stations, CNC machines, home automation systems)
   by providing chef installers for Raspberry Pi, generic server administration cookbooks (sudo, ssh) etc.
-  - Setting up a continuous integration chain with upstream Chef projects and [essential chef cookbooks](https://github.com/ranjib/pichef#cookbooks) using [GoatOS](https://github.com/goatos)
+  - Setting up a continuous integration chain with upstream Chef projects and [essential chef cookbooks](https://github.com/ranjib/pichef#cookbooks) using [GoatOS](https://github.com/goatos) so that essential community cookbooks will always be tested with upstream chef changes.
   - As a learning platform for system automation (run a small data center backed by chef).
 
 Currently PiChef provides following:
-- Chef omnibus packages for Raspberry Pi, available from [GotOS raspi](https://packagecloud.io/goatos/raspi) packagecloud repository.
+- Chef omnibus packages for Raspberry Pi, available from [GoatOS RasPi](https://packagecloud.io/goatos/raspi) packagecloud repository.
 - Cookbook to run [Goiardi](https://github.com/ctdk/goiardi), an opensource chef server written in [go](https://golang.org/).
 - Roles to configure omnibus build servers
 
