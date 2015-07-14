@@ -5,8 +5,15 @@ describe 'recipe[raspi::base]' do
     stub_command('which sudo').and_return(false)
   end
 
+  let(:boot_options) do
+    %w(a=b c=d e=f g=h=m)
+  end
+
   cached(:chef_run) do
-    ChefSpec::SoloRunner.new.converge('recipe[raspi::base]')
+    ChefSpec::SoloRunner.new do |node|
+      node.set['raspi']['timezone'] = 'foo/bar'
+      node.set['raspi']['boot_options'] = boot_options
+    end.converge('recipe[raspi::base]')
   end
 
   context '#include_recipe' do
@@ -43,7 +50,7 @@ describe 'recipe[raspi::base]' do
 
   it 'sets localtime to bay area time' do
     expect(chef_run).to create_remote_file('/etc/localtime').with(
-      source: 'file:///usr/share/zoneinfo/America/Los_Angeles',
+      source: 'file:///usr/share/zoneinfo/foo/bar',
       mode: 0644,
       owner: 'root',
       group: 'root'
@@ -51,10 +58,11 @@ describe 'recipe[raspi::base]' do
   end
 
   it 'configures pi for hdmi hotplug' do
-    expect(chef_run).to create_cookbook_file('/boot/config.txt').with(
+    expect(chef_run).to create_file('/boot/firmware/config.txt').with(
       mode: 0755,
       owner: 'root',
-      group: 'root'
+      group: 'root',
+      content: boot_options.join("\n") + "\n"
     )
   end
 

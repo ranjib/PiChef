@@ -33,16 +33,19 @@ file '/etc/hosts' do
 end
 
 remote_file '/etc/localtime' do
-  source 'file:///usr/share/zoneinfo/America/Los_Angeles'
+  source "file:///usr/share/zoneinfo/#{node.raspi.timezone}"
   mode 0644
   owner 'root'
   group 'root'
 end
 
-cookbook_file '/boot/config.txt' do
+file '/boot/firmware/config.txt' do
   mode 0755
   owner 'root'
   group 'root'
+  content(
+    (node.raspi.boot_options || Raspi.default_boot_options) * "\n" + "\n"
+  )
 end
 
 package 'utilities' do
