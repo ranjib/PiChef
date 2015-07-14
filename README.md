@@ -6,9 +6,8 @@ Chef on Raspberry Pi.
 PiChef brings the joy of configuration management system [Chef](https://www.chef.io/chef/)
 on [Raspberry Pi](https://www.raspberrypi.org/).
 PiChef is built with following goals
-  - Ease building and maintaining raspberry pi related projects (like weather stations, CNC machines, home automation systems)
-  by providing chef installers for Raspberry Pi, generic server administration cookbooks (sudo, ssh) etc.
-  - Setting up a continuous integration chain with upstream Chef projects and [essential chef cookbooks](https://github.com/ranjib/pichef#cookbooks) using [GoatOS](https://github.com/goatos) so that essential community cookbooks will always be tested with upstream chef changes.
+  - Ease building and maintaining raspberry pi related projects (like weather stations, CNC machines, home automation systems) by providing chef installers for Raspberry Pi, generic server administration cookbooks (sudo, ssh) etc.
+  - Setting up a continuous integration chain with upstream Chef project and [essential chef cookbooks](https://github.com/ranjib/pichef#cookbooks) using [GoatOS](https://github.com/goatos) so that essential community cookbooks will always be tested with upstream chef changes on ubuntu.
   - As a learning platform for system automation (run a small data center backed by chef).
 
 Currently PiChef provides following:
@@ -17,7 +16,7 @@ Currently PiChef provides following:
 - Roles to configure omnibus build servers
 
 
-### Description
+### Getting started
 
 - If you are new to Chef or configuration management system read a little about Chef. Following
 are great resources.
