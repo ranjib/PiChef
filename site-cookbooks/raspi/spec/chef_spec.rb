@@ -6,7 +6,7 @@ describe 'recipe[raspi::chef]' do
   end
 
   it 'adds goatos packagecloud repo' do
-    expect(chef_run).to create_packagecloud_repo('ranjib/goatos').with(
+    expect(chef_run).to create_packagecloud_repo('goatos/raspi').with(
       type: 'deb'
     )
   end

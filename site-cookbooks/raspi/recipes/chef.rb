@@ -1,4 +1,4 @@
-packagecloud_repo 'ranjib/goatos' do
+packagecloud_repo 'goatos/raspi' do
   type 'deb'
 end
 
