@@ -1,0 +1,10 @@
+branches:
+  only:
+    - master
+language: ruby
+rvm:
+  - 2.2.2
+before_install:
+  - bundle install --path .bundle
+  - bundle exec berks vendor vendor
+script: bundle exec rake spec
