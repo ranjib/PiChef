@@ -30,10 +30,9 @@ end
 # https://github.com/chef/omnibus-chef/issues/434
 git '/home/omnibus/omnibus-chef' do
   repository 'https://github.com/chef/omnibus-chef.git'
-  action :checkout
+  action :sync
   user 'omnibus'
   group 'omnibus'
-  revision '8d0d923a35dffe8f55cb1ca4a9e0fec94b4e4bde'
 end
 
 cookbook_file '/home/omnibus/build_chef.sh' do
