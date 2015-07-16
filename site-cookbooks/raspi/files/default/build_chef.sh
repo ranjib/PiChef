@@ -19,6 +19,9 @@ cd /home/omnibus/chef-transform
 dpkg-deb -x chefx.deb chef
 dpkg-deb -e chefx.deb chef/DEBIAN
 sed -ir "s/Architecture: armv7l/Architecture: armhf/" chef/DEBIAN/control
+CHEF_VERSION=`cat chef/opt/chef/embedded/apps/chef/VERSION | grep -Po "^\d+\.\d+\.\d+"`
+sed -ir "s/Architecture: armv7l/Architecture: armhf/" chef/DEBIAN/control
+sed -ir "s/Version: .*/Version: ${CHEF_VERSION}/" chef/DEBIAN/control
 dpkg-deb -b chef chef.deb
 mv chef.deb /home/omnibus/chef-$VERSION.deb
 cd /tmp
