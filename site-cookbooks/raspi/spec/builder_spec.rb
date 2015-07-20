@@ -14,11 +14,10 @@ describe 'recipe[raspi::builder]' do
   end
 
   it 'clones chef omnibus repo' do
-    expect(chef_run).to checkout_git('/home/omnibus/omnibus-chef').with(
+    expect(chef_run).to sync_git('/home/omnibus/omnibus-chef').with(
       repository: 'https://github.com/chef/omnibus-chef.git',
       user: 'omnibus',
-      group: 'omnibus',
-      revision: '8d0d923a35dffe8f55cb1ca4a9e0fec94b4e4bde'
+      group: 'omnibus'
     )
   end
 

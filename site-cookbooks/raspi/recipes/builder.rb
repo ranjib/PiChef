@@ -30,14 +30,20 @@ end
 # https://github.com/chef/omnibus-chef/issues/434
 git '/home/omnibus/omnibus-chef' do
   repository 'https://github.com/chef/omnibus-chef.git'
-  action :checkout
+  action :sync
   user 'omnibus'
   group 'omnibus'
-  revision '8d0d923a35dffe8f55cb1ca4a9e0fec94b4e4bde'
 end
 
 cookbook_file '/home/omnibus/build_chef.sh' do
   mode 0754
   owner 'omnibus'
   group 'omnibus'
+end
+
+cookbook_file '/usr/sbin/update-chef' do
+  source 'update-chef.sh'
+  mode 0754
+  owner 'root'
+  group 'root'
 end
