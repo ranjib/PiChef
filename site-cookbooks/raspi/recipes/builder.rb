@@ -40,3 +40,10 @@ cookbook_file '/home/omnibus/build_chef.sh' do
   owner 'omnibus'
   group 'omnibus'
 end
+
+cookbook_file '/usr/sbin/update-chef' do
+  source 'update-chef.sh'
+  mode 0754
+  owner 'root'
+  group 'root'
+end
