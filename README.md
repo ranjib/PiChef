@@ -47,6 +47,31 @@ from where Pi will be managed.
     - LED Segments
     - Steppers
 
+### Setting up pi
+This section is based on Ubuntu/ARM wiki [page](https://wiki.ubuntu.com/ARM/RaspberryPi).
+Assuming you ubuntu is the development box
+  - download trusty image from [here](http://www.finnie.org/software/raspberrypi/2015-04-06-ubuntu-trusty.zip) and unzip it.
+  - Write the image to an sd card
+  ```sh
+    sudo bmaptool copy --bmap ubuntu-trusty.bmap ubuntu-trusty.img /dev/mmcblk0
+  ```
+  - modify the diskpartition in sd card to expand entire storage capacity.
+  ```sh
+  sudo fdisk /dev/mmcblk0
+  ```
+  Delete the second partition (d, 2), then re-create it using the defaults (n, p, 2, enter, enter), then write and exit (w). Reboot the system.
+  ```sh
+  sudo resize2fs /dev/mmcblk0p2
+  ```
+  - Install ssh
+  ```sh
+  sudo apt-get install openssh-server
+  ```
+  - download and install chef
+  ```sh
+  wget -c https://packagecloud.io/goatos/raspi/packages/ubuntu/trusty/chef_12.5.0_armhf.deb/download -O chef.deb
+  sudo dpkg -i chef.deb
+  ```
 
 ### Cookbooks
 
