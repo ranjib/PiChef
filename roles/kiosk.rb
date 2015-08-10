@@ -8,7 +8,7 @@ default_attributes(
       dtparam=i2c1=on
       dtparam=i2c_arm=on
       hdmi_force_hotplug=1
-      over_ voltage=2
+      over_voltage=2
       sdram_freq=500
     )
   }
