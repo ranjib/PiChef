@@ -30,14 +30,13 @@ template '/opt/goiardi/etc/goiardi.conf' do
   variables(hostname: node.ipaddress)
 end
 
-cookbook_file '/etc/init.d/goiardi' do
-  owner 'root'
-  group 'root'
-  mode 0751
-  source 'goiardi.init.sh'
-end
-
-service 'goiardi' do
-  supports(start: true, stop: true, status: true)
-  action [:start, :enable]
+systemd_service 'goiardi' do
+  description 'Goiardi'
+  user 'goiardi'
+  permissions_start_only 'true'
+  exec_start '/opt/goiardi/bin/goiardi -c /opt/goiardi/etc/goiardi.conf'
+  restart 'always'
+  restart_sec '10s'
+  wanted_by 'multi-user.target'
+  action [:create, :start, :enable]
 end

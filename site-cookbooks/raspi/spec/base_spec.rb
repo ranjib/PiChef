@@ -17,7 +17,7 @@ describe 'recipe[raspi::base]' do
   end
 
   context '#include_recipe' do
-    %w(sudo openssh apparmor).each do |recipe|
+    %w(sudo openssh).each do |recipe|
       it "##{recipe}" do
         expect(chef_run).to include_recipe(recipe)
       end
@@ -69,6 +69,7 @@ describe 'recipe[raspi::base]' do
   it 'installs utility packages' do
     expect(chef_run).to install_package('utilities').with(
       package_name: %w(
+        sysstat
         screen
         vim
         htop

@@ -1,12 +1,6 @@
 include_recipe 'sudo::default'
 include_recipe 'openssh::default'
 
-# apparmor recipe bombs on 15.04
-# https://github.com/opscode-cookbooks/apparmor/issues/4
-unless node.platform_version == '15.04'
-  include_recipe 'apparmor'
-end
-
 sudo 'ubuntu' do
   user 'ubuntu'
   nopasswd true
@@ -50,6 +44,7 @@ end
 
 package 'utilities' do
   package_name %w(
+    sysstat
     screen
     vim
     htop
