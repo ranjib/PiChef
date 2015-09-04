@@ -98,6 +98,7 @@ GRAPH
     yum-epel (>= 0.0.0)
   raspi (0.0.1)
     apparmor (>= 0.0.0)
+    apt (>= 0.0.0)
     omnibus (>= 0.0.0)
     openssh (>= 0.0.0)
     packagecloud (>= 0.0.0)

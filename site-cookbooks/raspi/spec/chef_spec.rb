@@ -5,13 +5,7 @@ describe 'recipe[raspi::chef]' do
     ChefSpec::SoloRunner.new.converge('recipe[raspi::chef]')
   end
 
-  it 'adds goatos packagecloud repo' do
-    expect(chef_run).to create_packagecloud_repo('goatos/raspi').with(
-      type: 'deb'
-    )
-  end
-
   it 'installs chef package' do
-    expect(chef_run).to install_package('chef')
+    expect(chef_run).to create_systemd_timer('chef')
   end
 end
