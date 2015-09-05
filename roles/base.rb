@@ -6,9 +6,6 @@ default_attributes(
       'groups' => %w(),
       'include_sudoers_d' => true
     }
-  },
-  'apparmor' => {
-    'disable' => false
   }
 )
 
