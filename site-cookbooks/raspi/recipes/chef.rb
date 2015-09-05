@@ -1,7 +1,9 @@
-packagecloud_repo 'goatos/raspi' do
-  type 'deb'
+systemd_service 'chef' do
+  description 'Run chef'
+  exec_start 'chef-client --no-fork'
 end
 
-package 'chef' do
-  version node['raspi']['chef_version']
+systemd_timer 'chef' do
+  description 'Periodic chef run'
+  on_unit_active_sec '15m'
 end

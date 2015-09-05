@@ -43,21 +43,15 @@ describe 'recipe[raspi::goiardi]' do
     )
   end
 
-  it 'creates init.d script for goiardi service' do
-    expect(chef_run).to create_cookbook_file('/etc/init.d/goiardi').with(
-      owner: 'root',
-      group: 'root',
-      mode: 0751,
-      source: 'goiardi.init.sh'
-    )
-  end
-
-  it 'start and enable goiardi service' do
-    expect(chef_run).to start_service('goiardi').with(
-      supports: { start: true, stop: true, status: true }
-    )
-    expect(chef_run).to enable_service('goiardi').with(
-      supports: { start: true, stop: true, status: true }
+  it 'creates goiardi systemd service' do
+    expect(chef_run).to create_systemd_service('goiardi').with(
+      description: 'Goiardi',
+      user: 'goiardi',
+      permissions_start_only: 'true',
+      exec_start: '/opt/goiardi/bin/goiardi -c /opt/goiardi/etc/goiardi.conf',
+      restart: 'always',
+      restart_sec: '10s',
+      wanted_by: 'multi-user.target'
     )
   end
 end
