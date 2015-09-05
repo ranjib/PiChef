@@ -1,0 +1,5 @@
+user 'goatos'
+node.default['go_cd']['java_home']= '/usr/lib/jvm/java-7-oracle'
+include_recipe 'raspi::java'
+include_recipe 'raspi::golang'
+include_recipe 'goatos::agent'
