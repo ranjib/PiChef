@@ -1,6 +1,6 @@
 systemd_service 'chef' do
   description 'Run chef'
-  exec_start 'chef-client --no-fork'
+  exec_start '/opt/chef/bin/chef-client --no-fork'
 end
 
 systemd_timer 'chef' do

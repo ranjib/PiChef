@@ -8,7 +8,5 @@ default_attributes(
 
 run_list %w(
   role[base]
-  recipe[raspi::java]
-  recipe[raspi::golang]
-  recipe[goatos::agent]
+  recipe[raspi::gocd_agent]
 )
