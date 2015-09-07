@@ -1,13 +1,15 @@
-grafana_deb_url = 'http://'
+grafana_deb_url = node.raspi.metrics.grafana_deb_url
 grafana_deb_path = ::File.join(Chef::Config.file_cache_path, ::File.basename(URI(grafana_deb_url).path))
+
+package 'metrics-deps' do
+  package_name %w(fontconfig-config libfontconfig1)
+end
 
 user 'influxdb' do
   system true
   home '/opt/influxdb'
   manage_home true
 end
-
-influxdb_url = 'http://10.0.0.4:8153/go/files/InfluxDB/12/Build/1/build/influxd'
 
 cookbook_file '/etc/default/influxdb' do
   mode 0644
@@ -21,7 +23,7 @@ cookbook_file '/opt/influxdb/influxdb.conf' do
 end
 
 remote_file '/opt/influxdb/influxd' do
-  source influxdb_url
+  source node.raspi.metrics.influxdb_url
   mode 0755
   action :create_if_missing
 end
@@ -38,7 +40,7 @@ systemd_service 'influxdb' do
   wanted_by 'multi-user.target'
   action [:create, :start, :enable]
 end
-=begin
+
 remote_file grafana_deb_path do
   source grafana_deb_url
   action :create_if_missing
@@ -48,7 +50,6 @@ dpkg_package 'grafana' do
   source grafana_deb_path
 end
 
-systemd_service 'grafana' do
-  action [:create, :start, :enable]
+service 'grafana' do
+  action [:start, :enable]
 end
-=end

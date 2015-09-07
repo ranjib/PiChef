@@ -1,0 +1,191 @@
+<pipelines group="GoatOS">
+  <pipeline name="InfluxDB">
+    <environmentvariables>
+      <variable name="GOPATH">
+        <value>/var/lib/go-agent/pipelines/InfluxDB/gospace</value>
+      </variable>
+      <variable name="GOROOT">
+        <value>/opt/go</value>
+      </variable>
+    </environmentvariables>
+    <materials>
+      <git url="https://github.com/influxdb/influxdb.git" />
+    </materials>
+    <stage name="Build">
+      <jobs>
+        <job name="build">
+          <tasks>
+            <exec command="/opt/go/bin/go">
+              <arg>get</arg>
+              <arg>github.com/influxdb/influxdb</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="/opt/go/bin/go" workingdir="gospace/src/github.com/influxdb/influxdb">
+              <arg>get</arg>
+              <arg>-u</arg>
+              <arg>-f</arg>
+              <arg>-t</arg>
+              <arg>./...</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="/opt/go/bin/go" workingdir="gospace/src/github.com/influxdb/influxdb">
+              <arg>build</arg>
+              <arg>./...</arg>
+              <runif status="passed" />
+            </exec>
+          </tasks>
+          <artifacts>
+            <artifact src="gospace/bin/influxd" />
+          </artifacts>
+        </job>
+      </jobs>
+    </stage>
+  </pipeline>
+  <pipeline name="Grafana">
+    <environmentvariables>
+      <variable name="GOPATH">
+        <value>/var/lib/go-agent/pipelines/Grafana/gospace</value>
+      </variable>
+      <variable name="GOROOT">
+        <value>/opt/go</value>
+      </variable>
+      <variable name="PATH">
+        <value>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/go/bin:/opt/chef/embedded/bin</value>
+      </variable>
+    </environmentvariables>
+    <materials>
+      <git url="https://github.com/grafana/grafana.git" />
+    </materials>
+    <stage name="Build" cleanWorkingDir="true">
+      <jobs>
+        <job name="build" timeout="0">
+          <tasks>
+            <exec command="/opt/go/bin/go">
+              <arg>get</arg>
+              <arg>github.com/grafana/grafana</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="/opt/go/bin/go" workingdir="gospace/src/github.com/grafana/grafana">
+              <arg>get</arg>
+              <arg>-u</arg>
+              <arg>-f</arg>
+              <arg>-t</arg>
+              <arg>./...</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="/opt/go/bin/go" workingdir="gospace/src/github.com/grafana/grafana">
+              <arg>run</arg>
+              <arg>build.go</arg>
+              <arg>setup</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="../../../../bin/godep" workingdir="gospace/src/github.com/grafana/grafana">
+              <arg>restore</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="npm" workingdir="gospace/src/github.com/grafana/grafana">
+              <arg>install</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="cp">
+              <arg>/var/chef/cache/phantomjs-1.9.0-linux-armv6l/bin/phantomjs</arg>
+              <arg>gospace/src/github.com/grafana/grafana/node_modules/karma-phantomjs-launcher/node_modules/phantomjs/lib/phantom/bin/phantomjs</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="/opt/go/bin/go" workingdir="gospace/src/github.com/grafana/grafana">
+              <arg>run</arg>
+              <arg>build.go</arg>
+              <arg>build</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="/opt/go/bin/go" workingdir="gospace/src/github.com/grafana/grafana">
+              <arg>run</arg>
+              <arg>build.go</arg>
+              <arg>package</arg>
+              <runif status="passed" />
+            </exec>
+          </tasks>
+          <artifacts>
+            <artifact src="gospace/src/github.com/grafana/grafana/dist/grafana_2.2.0-pre1_armhf.deb" />
+          </artifacts>
+        </job>
+      </jobs>
+    </stage>
+  </pipeline>
+  <pipeline name="Etcd">
+    <environmentvariables>
+      <variable name="GOPATH">
+        <value>/var/lib/go-agent/pipelines/Etcd/gospace</value>
+      </variable>
+      <variable name="GOROOT">
+        <value>/opt/go</value>
+      </variable>
+      <variable name="PATH">
+        <value>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/go/bin</value>
+      </variable>
+    </environmentvariables>
+    <materials>
+      <git url="https://github.com/coreos/etcd.git" />
+    </materials>
+    <stage name="Build">
+      <jobs>
+        <job name="Build">
+          <tasks>
+            <exec command="/opt/go/bin/go">
+              <arg>get</arg>
+              <arg>github.com/coreos/etcd</arg>
+            </exec>
+            <exec command="bash" workingdir="gospace/src/github.com/coreos/etcd">
+              <arg>./build</arg>
+              <runif status="passed" />
+            </exec>
+          </tasks>
+          <artifacts>
+            <artifact src="gospace/src/github.com/coreos/etcd/bin/etcd" />
+          </artifacts>
+        </job>
+      </jobs>
+    </stage>
+  </pipeline>
+  <pipeline name="Serf">
+    <environmentvariables>
+      <variable name="GOPATH">
+        <value>/var/lib/go-agent/pipelines/Serf/gospace</value>
+      </variable>
+      <variable name="GOROOT">
+        <value>/opt/go</value>
+      </variable>
+      <variable name="PATH">
+        <value>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/go/bin</value>
+      </variable>
+    </environmentvariables>
+    <materials>
+      <git url="https://github.com/hashicorp/serf.git" />
+    </materials>
+    <stage name="Build">
+      <jobs>
+        <job name="Build">
+          <tasks>
+            <exec command="/opt/go/bin/go">
+              <arg>get</arg>
+              <arg>github.com/hashicorp/serf</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="mkdir" workingdir="gospace/src/github.com/hashicorp/serf">
+              <arg>bin</arg>
+              <runif status="passed" />
+            </exec>
+            <exec command="/opt/go/bin/go" workingdir="gospace/src/github.com/hashicorp/serf">
+              <arg>build</arg>
+              <arg>./...</arg>
+              <runif status="passed" />
+            </exec>
+          </tasks>
+          <artifacts>
+            <artifact src="gospace/bin/serf" />
+          </artifacts>
+        </job>
+      </jobs>
+    </stage>
+  </pipeline>
+</pipelines>
