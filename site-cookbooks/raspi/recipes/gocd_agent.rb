@@ -1,3 +1,5 @@
+package 'rpm'
+
 user 'goatos' do
   home '/var/lib/go-agent'
   shell '/bin/bash'
