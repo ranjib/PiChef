@@ -1,4 +1,9 @@
-package 'rpm'
+package 'pipeline_deps' do
+  package_name %w(
+    rpm
+    mercurial
+  )
+end
 
 user 'goatos' do
   home '/var/lib/go-agent'
