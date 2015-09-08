@@ -50,6 +50,6 @@ dpkg_package 'grafana' do
   source grafana_deb_path
 end
 
-service 'grafana' do
+service 'grafana-server' do
   action [:start, :enable]
 end

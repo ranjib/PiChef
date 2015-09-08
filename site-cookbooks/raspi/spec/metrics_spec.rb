@@ -68,6 +68,6 @@ describe 'recipe[raspi::metrics]' do
   end
 
   it 'start grafana service' do
-    expect(chef_run).to start_service('grafana')
+    expect(chef_run).to start_service('grafana-server')
   end
 end
