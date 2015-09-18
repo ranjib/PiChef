@@ -5,12 +5,12 @@ apt_repository 'webupd8team' do
   distribution node['lsb']['codename']
 end
 
-execute 'accept-license' do
+execute 'accept-license-select' do
   command 'echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections'
   not_if 'dpkg -L oracle-java7-installer'
 end
 
-execute 'accept-license' do
+execute 'accept-license-seen' do
   command 'echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections'
   not_if 'dpkg -L oracle-java7-installer'
 end
