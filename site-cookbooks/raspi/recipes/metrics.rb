@@ -20,6 +20,7 @@ cookbook_file '/opt/influxdb/influxdb.conf' do
   mode 0644
   owner 'influxdb'
   group 'influxdb'
+  notifies :restart, 'systemd_service[influxdb]'
 end
 
 remote_file '/opt/influxdb/influxd' do
