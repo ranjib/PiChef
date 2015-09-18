@@ -12,4 +12,6 @@ default_attributes(
 run_list %w(
   recipe[raspi::base]
   recipe[raspi::chef]
+  recipe[raspi::serf]
+  recipe[raspi::statsd]
 )
