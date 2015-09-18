@@ -13,3 +13,5 @@ default['raspi']['serf_download_url'] = 'https://github.com/ranjib/PiChef/releas
 default['raspi']['serf_config'] = {}
 
 default['raspi']['etcd_download_url'] = 'https://github.com/ranjib/PiChef/releases/download/0.0.2/serf'
+default['raspi']['statsdaemon_download_url'] = 'https://github.com/ranjib/PiChef/releases/download/0.0.2/statsdaemon'
+default['raspi']['metrics_end_point'] = nil

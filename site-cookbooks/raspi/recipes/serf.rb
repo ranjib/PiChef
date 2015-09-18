@@ -1,4 +1,3 @@
-
 remote_file '/usr/bin/serf' do
   owner 'root'
   group 'root'
