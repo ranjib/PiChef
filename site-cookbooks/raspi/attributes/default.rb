@@ -8,3 +8,8 @@ default['raspi']['metrics'].tap do |m|
   m['influxdb_url'] = 'https://github.com/ranjib/PiChef/releases/download/0.0.2/influxd'
   m['grafana_deb_url'] = 'https://github.com/ranjib/PiChef/releases/download/0.0.2/grafana_2.2.0-pre1_armhf.deb'
 end
+
+default['raspi']['serf_download_url'] = 'https://github.com/ranjib/PiChef/releases/download/0.0.2/serf'
+default['raspi']['serf_config'] = {}
+
+default['raspi']['etcd_download_url'] = 'https://github.com/ranjib/PiChef/releases/download/0.0.2/serf'

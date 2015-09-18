@@ -3,3 +3,4 @@ cookbooks
 *.deb
 .bundle
 .chef
+backups
