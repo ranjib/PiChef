@@ -36,6 +36,7 @@
           </tasks>
           <artifacts>
             <artifact src="gospace/bin/influxd" />
+            <artifact src="gospace/bin/influx" />
           </artifacts>
         </job>
       </jobs>
@@ -183,6 +184,38 @@
           </tasks>
           <artifacts>
             <artifact src="gospace/bin/serf" />
+          </artifacts>
+        </job>
+      </jobs>
+    </stage>
+  </pipeline>
+  <pipeline name="statsdaemon">
+    <environmentvariables>
+      <variable name="GOPATH">
+        <value>/var/lib/go-agent/pipelines/Serf/gospace</value>
+      </variable>
+      <variable name="GOROOT">
+        <value>/opt/go</value>
+      </variable>
+      <variable name="PATH">
+        <value>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/go/bin</value>
+      </variable>
+    </environmentvariables>
+    <materials>
+      <git url="https://github.com/bitly/statsdaemon.git" />
+    </materials>
+    <stage name="Build">
+      <jobs>
+        <job name="Build">
+          <tasks>
+            <exec command="/opt/go/bin/go">
+              <arg>build</arg>
+              <arg>./...</arg>
+              <runif status="passed" />
+            </exec>
+          </tasks>
+          <artifacts>
+            <artifact src="statsdaemon" />
           </artifacts>
         </job>
       </jobs>
