@@ -1,0 +1,19 @@
+[tags]
+[agent]
+    interval = "10s"
+    debug = false
+    hostname = "<%=@hostname%>"
+    utc = true
+    precision = "s"
+[outputs]
+[outputs.influxdb]
+    urls = ["<%=@url%>"]
+    database = "<%=@database%>"
+[cpu]
+    percpu = true
+    totalcpu = true
+[disk]
+[io]
+[mem]
+[system]
+[swap]
