@@ -14,7 +14,8 @@ template '/etc/telegraf.conf' do
   group 'telegraf'
   mode 0644
   variables(
-    database: node.raspi.telegraph_database,
+    hostname: node.name,
+    database: node.raspi.telegraf_database,
     url: node.raspi.telegraf_output_url
   )
 end
