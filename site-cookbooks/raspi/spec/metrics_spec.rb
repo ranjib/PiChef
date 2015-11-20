@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe 'recipe[raspi::metrics]' do
   let(:grafana_deb_path) do
-    File.join(Chef::Config.file_cache_path, 'grafana_2.2.0-pre1_armhf.deb')
+    File.join(Chef::Config.file_cache_path, 'grafana_2.5.0-pre1_armhf.deb')
   end
 
   cached(:chef_run) do
-    ChefSpec::SoloRunner.new do |node|
+    ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache') do |node|
     end.converge('recipe[raspi::metrics]')
   end
 
