@@ -126,7 +126,7 @@ GRAPH
   smf (2.2.7)
     rbac (>= 1.0.1)
   sudo (2.7.2)
-  systemd (1.0.0)
+  systemd (1.1.1)
   windows (1.38.2)
     chef_handler (>= 0.0.0)
   windows-sdk (1.0.2)

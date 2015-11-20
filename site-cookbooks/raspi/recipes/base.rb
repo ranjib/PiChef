@@ -53,6 +53,6 @@ package 'utilities' do
   )
 end
 
-systemd_timesynd 'debian_pool' do
+systemd_timesyncd 'debian_pool' do
   ntp (0..3).map{|i| "#{i}.debian.pool.ntp.org"}
 end
