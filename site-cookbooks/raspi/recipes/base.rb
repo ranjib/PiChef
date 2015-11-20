@@ -52,3 +52,7 @@ package 'utilities' do
     traceroute
   )
 end
+
+systemd_timesynd 'debian_pool' do
+  ntp (0..3).map{|i| "#{i}.debian.pool.ntp.org"}
+end
