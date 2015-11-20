@@ -33,7 +33,7 @@ end
 systemd_service 'goiardi' do
   description 'Goiardi'
   user 'goiardi'
-  permissions_start_only 'true'
+  permissions_start_only true
   exec_start '/opt/goiardi/bin/goiardi -c /opt/goiardi/etc/goiardi.conf'
   restart 'always'
   restart_sec '10s'
