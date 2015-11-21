@@ -22,3 +22,12 @@
 [mem]
 [system]
 [swap]
+[statsd]
+  service_address = ":8125"
+  delete_gauges = false
+  delete_counters = false
+  delete_sets = false
+  delete_timings = true
+  percentiles = [90]
+  allowed_pending_messages = 10000
+  percentile_limit = 1000

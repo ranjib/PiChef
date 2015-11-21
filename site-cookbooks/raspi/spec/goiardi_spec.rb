@@ -47,7 +47,7 @@ describe 'recipe[raspi::goiardi]' do
     expect(chef_run).to create_systemd_service('goiardi').with(
       description: 'Goiardi',
       user: 'goiardi',
-      permissions_start_only: 'true',
+      permissions_start_only: true,
       exec_start: '/opt/goiardi/bin/goiardi -c /opt/goiardi/etc/goiardi.conf',
       restart: 'always',
       restart_sec: '10s',
