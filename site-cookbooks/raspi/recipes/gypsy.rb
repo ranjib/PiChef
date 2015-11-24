@@ -11,6 +11,7 @@ lxc 'go-1.5' do
         mercurial
         wget
         build-essential
+        pkg-config
       )
     end
     remote_file '/opt/go.tgz' do
